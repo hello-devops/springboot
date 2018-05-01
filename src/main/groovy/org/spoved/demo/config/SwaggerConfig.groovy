@@ -1,6 +1,7 @@
 package org.spoved.demo.config
 
 import com.google.common.base.Predicate
+import org.spoved.demo.account.LoginUser
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import springfox.documentation.builders.RequestHandlerSelectors
@@ -20,6 +21,7 @@ class SwaggerConfig {
     @Bean
     Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .ignoredParameterTypes(LoginUser.class)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage('org.spoved.demo.web'))
                 .paths(paths())
